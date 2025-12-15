@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新亚电子研究报告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #004B8D;
+            --secondary-color: #4A90E2;
+            --accent-color: #28a745;
+            --warning-color: #dc3545;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* 响应式导航 */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-color);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+            }
+
+            .nav-link {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+        }
+
+        /* 标题区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 容器和内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+
+        .timeline-year {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 表格样式 */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* 风险提示 */
+        .risk-alert {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .risk-alert h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 投资建议 */
+        .investment-advice {
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .investment-advice h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                margin: 2rem 0;
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                margin-left: 0.5rem;
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                min-width: auto;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+
+        /* 动画效果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">新亚电子研究</a>
+            <button class="nav-toggle" onclick="toggleNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link">返回主页</a></li>
+                <li><a href="#development" class="nav-link">发展历程</a></li>
+                <li><a href="#business" class="nav-link">主营业务</a></li>
+                <li><a href="#industry" class="nav-link">行业地位</a></li>
+                <li><a href="#technology" class="nav-link">技术布局</a></li>
+                <li><a href="#stock" class="nav-link">股价表现</a></li>
+                <li><a href="#risks" class="nav-link">风险分析</a></li>
+                <li><a href="#advice" class="nav-link">投资建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 标题区域 -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-aos="fade-up">新亚电子研究报告</h1>
+            <p data-aos="fade-up" data-aos-delay="200">AI算力与新能源驱动下的线材隐形冠军</p>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 公司概况 -->
+        <div class="section" data-aos="fade-up">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">35.31亿</div>
+                    <div class="stat-label">2024年营收</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">14.95%</div>
+                    <div class="stat-label">毛利率</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">605277</div>
+                    <div class="stat-label">股票代码</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">23.86元</div>
+                    <div class="stat-label">当前股价</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 发展历程 -->
+        <div class="section" id="development" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-history"></i>
+                公司发展历程
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1987-1992年：起步阶段</div>
+                    <p>1987年4月7日，新亚电子前身乐清县盐盘电子塑料元件厂由叶金明、张其成、黄万定三位自然人股东共出资1.5万元设立。1990年更名为乐清县新亚无线电厂，1992年完成股权转让。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1992-2001年：发展阶段</div>
+                    <p>1997年9月变更为温州市新亚无线电有限公司；1998年3月更名为浙江新亚电子有限公司；2001年5月更名为新亚电子有限公司。逐步确立在电子线缆制造领域的专业地位。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2001-2018年：壮大阶段</div>
+                    <p>2008年与全球最大的连接器制造商之一美国安费诺集团搭线，取得研发高频数据线项目机会。2018年11月新亚电子股份有限公司正式成立，并获得《制造业单项冠军产品证书》。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020-2021年：上市阶段</div>
+                    <p>2020年实现营业收入10.01亿元，同比增长7.77%。2021年1月6日在上海证券交易所主板上市，股票代码605277，发行价16.95元/股，进入资本市场发展新阶段。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主营业务 -->
+        <div class="section" id="business" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-industry"></i>
+                主营业务与产品线分析
+            </h2>
+            <p>新亚电子主要从事精细电子线材的研发、制造和销售，产品广泛应用于消费电子、工业控制、通信、新能源及汽车等领域。根据2025年一季度数据，公司主营业务收入结构如下：</p>
+            
+            <div class="chart-container">
+                <h3>业务板块营收占比</h3>
+                <div class="chart-wrapper">
+                    <canvas id="businessPieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>业务板块</th>
+                            <th>营收占比</th>
+                            <th>2024年营收增速</th>
+                            <th>核心客户</th>
+                            <th>技术优势</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>消费电子及工业控制线材</td>
+                            <td>39.26%</td>
+                            <td style="color: var(--accent-color);">+22.99%</td>
+                            <td>海信、美的、华为、ASML</td>
+                            <td>微型化精密加工工艺</td>
+                        </tr>
+                        <tr>
+                            <td>通信线缆及数据线材</td>
+                            <td>34.75%</td>
+                            <td style="color: var(--warning-color);">-16.29%</td>
+                            <td>安费诺、戴尔、谷歌</td>
+                            <td>高频高速铜缆连接线（PCIe6.0/7.0）</td>
+                        </tr>
+                        <tr>
+                            <td>新能源系列线缆及组件</td>
+                            <td>16.10%</td>
+                            <td style="color: var(--accent-color);">+40.78%</td>
+                            <td>比亚迪、宁德时代、阳光电源</td>
+                            <td>耐高温阻燃材料技术</td>
+                        </tr>
+                        <tr>
+                            <td>汽车线缆</td>
+                            <td>4%</td>
+                            <td style="color: var(--accent-color);">+176.3%</td>
+                            <td>比亚迪、小米、理想、蔚来</td>
+                            <td>车载千兆以太网线缆</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 行业地位 -->
+        <div class="section" id="industry" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-trophy"></i>
+                行业地位与业绩表现
+            </h2>
+            <p>新亚电子在电子线缆细分领域具备技术领先优势，但在整体电子线缆行业市场份额相对较小。根据2024年行业数据，中国前十强电线电缆生产商仅占市场约18%的份额。</p>
+
+            <div class="chart-container">
+                <h3>2023-2025年营收与净利润趋势</h3>
+                <div class="chart-wrapper">
+                    <canvas id="financingChart"></canvas>
+                </div>
+            </div>
+
+            <h3>核心优势</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">与安费诺合作年数<br>占其高频高速铜缆采购份额60%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50-60%</div>
+                    <div class="stat-label">安费诺全球服务器连接器<br>市场占有率</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">18%</div>
+                    <div class="stat-label">中国前十强电线电缆<br>生产商市场份额</div>
+                </div>
+            </div>
+
+            <h3>近两年业绩表现</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>年份</th>
+                            <th>营收（亿元）</th>
+                            <th>同比增长</th>
+                            <th>净利润（亿元）</th>
+                            <th>同比增长</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023年</td>
+                            <td>31.86</td>
+                            <td style="color: var(--accent-color);">+88.94%</td>
+                            <td>1.44</td>
+                            <td style="color: var(--accent-color);">+0.96%</td>
+                        </tr>
+                        <tr>
+                            <td>2024年</td>
+                            <td>35.31</td>
+                            <td style="color: var(--accent-color);">+10.84%</td>
+                            <td>1.53</td>
+                            <td style="color: var(--accent-color);">+6.00%</td>
+                        </tr>
+                        <tr>
+                            <td>2025年前三季度</td>
+                            <td>28.73</td>
+                            <td style="color: var(--accent-color);">+15.89%</td>
+                            <td>1.59</td>
+                            <td style="color: var(--accent-color);">+56.63%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 技术布局 -->
+        <div class="section" id="technology" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                技术布局与发展战略
+            </h2>
+            <p>新亚电子正积极布局高频高速线缆、新能源线缆等高附加值领域，实施"内生式增长+外延式扩张"双轮驱动战略。</p>
+
+            <h3>核心技术突破</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">224G/448G</div>
+                    <div class="stat-label">"藕芯结构"技术<br>高速铜缆量产</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">良率提升至<br>90%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30%+</div>
+                    <div class="stat-label">成本降低<br>30%以上</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">PCIe7.0</div>
+                    <div class="stat-label">适配英伟达GB200/GB300服务器<br>样品小批量供货</div>
+                </div>
+            </div>
+
+            <h3>业务转型方向</h3>
+            <ul>
+                <li><strong>高频高速线缆</strong>：PCIe6.0产品已实现批量交付，PCIe7.0样品通过审核并小批量供货</li>
+                <li><strong>新能源线缆</strong>：光伏线缆适配N型TOPCon技术，储能线缆通过耐高温认证</li>
+                <li><strong>汽车线缆</strong>：车用HSD星型对绞高速数据缆及车用LVDS高速低电压差分信号数据缆开发完成</li>
+                <li><strong>环保技术</strong>：研发无PFAS环保型线缆以应对国际法规</li>
+            </ul>
+        </div>
+
+        <!-- 股价表现 -->
+        <div class="section" id="stock" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                股价近期表现及未来预期
+            </h2>
+            <p>新亚电子股价在2025年呈现"先涨后跌再反弹"的走势，年内累计涨幅约64%-70%。</p>
+
+            <div class="chart-container">
+                <h3>股价走势图</h3>
+                <div class="chart-wrapper">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+
+            <div class="investment-advice">
+                <h4><i class="fas fa-bullseye"></i>机构评级与目标价</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">32.54元</div>
+                        <div class="stat-label">机构目标均价<br>较当前股价有约36%上涨空间</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">48.8倍</div>
+                        <div class="stat-label">PE-TTM<br>高于行业均值27.73倍</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3家</div>
+                        <div class="stat-label">券商给予"买入"评级</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 风险分析 -->
+        <div class="section" id="risks" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                风险因素分析
+            </h2>
+            
+            <div class="risk-alert">
+                <h4><i class="fas fa-warning"></i>主要风险提示</h4>
+                <ul>
+                    <li><strong>客户集中度风险</strong>：前五大客户占比51.71%，其中华为为第一大客户（2024年贡献营收37.3%）</li>
+                    <li><strong>毛利率压力</strong>：毛利率从2022年的19.89%持续下滑至2025年Q1的14.18%</li>
+                    <li><strong>技术迭代风险</strong>：CPO（共封装光学）技术若突破成本瓶颈，可能替代3-5米距离铜缆应用</li>
+                    <li><strong>财务风险</strong>：资产负债率较高（2024年为57.19%），有息负债规模达10.45亿元</li>
+                    <li><strong>ST事件影响</strong>：因财务造假和信披问题于2024年11月被ST，可能对短期估值产生负面影响</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 投资建议 -->
+        <div class="section" id="advice" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb"></i>
+                投资建议与结论
+            </h2>
+            
+            <div class="investment-advice">
+                <h4><i class="fas fa-chart-bar"></i>投资策略建议</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">3-6个月</div>
+                        <div class="stat-label">短期关注<br>PCIe7.0及224G高速铜缆规模化量产</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6-12个月</div>
+                        <div class="stat-label">中期价值重估关键期<br>跟踪英伟达GB系列服务器供应链进展</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1-3年</div>
+                        <div class="stat-label">长期赛道红利<br>AI算力与新能源双重增长</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>展望未来</h3>
+            <p>新亚电子作为精细电子线材领域的隐形冠军，正处于AI算力与新能源汽车两大高景气赛道的交汇点。公司通过"藕芯结构"技术突破与客户供应链绑定，为其提供了核心竞争力，战略转型打开了长期成长空间。</p>
+
+            <p><strong>随着公司高附加值业务占比提升，盈利能力与现金流状况有望逐步改善</strong>，为投资者创造长期价值。</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="report-footer">
+        <div class="container">
+            <div style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color); margin-top: 2rem;">
+                <p style="color: var(--text-light); margin-bottom: 0.5rem;">
+                    <i class="fas fa-info-circle"></i> 数据来源：新亚电子公司公告、行业研究报告
+                </p>
+                <p style="color: var(--text-light); margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> 免责声明：本报告内容仅供参考，不构成投资建议
+                </p>
+                <p style="color: var(--text-light); font-size: 0.9rem;">
+                    报告内容由AI生成，投资有风险，入市需谨慎
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 初始化AOS动画
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // 导航栏切换
+        function toggleNav() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 业务占比饼图
+        const businessPieCtx = document.getElementById('businessPieChart').getContext('2d');
+        new Chart(businessPieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['消费电子及工业控制线材', '通信线缆及数据线材', '新能源系列线缆及组件', '汽车线缆'],
+                datasets: [{
+                    data: [39.26, 34.75, 16.10, 4],
+                    backgroundColor: [
+                        'rgba(0, 75, 141, 0.8)',
+                        'rgba(74, 144, 226, 0.8)',
+                        'rgba(255, 152, 0, 0.8)',
+                        'rgba(128, 128, 128, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(0, 75, 141, 1)',
+                        'rgba(74, 144, 226, 1)',
+                        'rgba(255, 152, 0, 1)',
+                        'rgba(128, 128, 128, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 财务趋势图
+        const financingCtx = document.getElementById('financingChart').getContext('2d');
+        new Chart(financingCtx, {
+            type: 'line',
+            data: {
+                labels: ['2023', '2024', '2025年前三季度'],
+                datasets: [{
+                    label: '营收（亿元）',
+                    data: [31.86, 35.31, 28.73],
+                    borderColor: 'rgba(0, 75, 141, 1)',
+                    backgroundColor: 'rgba(0, 75, 141, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: '净利润（亿元）',
+                    data: [1.44, 1.53, 1.59],
+                    borderColor: 'rgba(74, 144, 226, 1)',
+                    backgroundColor: 'rgba(74, 144, 226, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '金额（亿元）'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 股价走势图
+        const stockCtx = document.getElementById('stockChart').getContext('2d');
+        new Chart(stockCtx, {
+            type: 'line',
+            data: {
+                labels: ['2025/01', '2025/06', '2025/07', '2025/11', '2025/12'],
+                datasets: [{
+                    label: '股价（元）',
+                    data: [16.5, 23.5, 25.5, 21.02, 23.86],
+                    borderColor: 'rgba(0, 75, 141, 1)',
+                    backgroundColor: 'rgba(0, 75, 141, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: 'rgba(0, 75, 141, 1)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 15,
+                        max: 30,
+                        title: {
+                            display: true,
+                            text: '股价（元）'
+                        }
+                    }
+                }
+            }
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

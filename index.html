@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上市公司研究报告</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div id="stars"></div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 标题 -->
+        <header class="header">
+            <h1>上市公司研究报告</h1>
+        </header>
+        
+        <!-- 搜索区域 -->
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索研究报告...">
+                <button id="searchBtn">搜索</button>
+            </div>
+        </section>
+        
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 报告列表 -->
+            <section class="reports-section">
+                <h2>最新报告</h2>
+                <div class="reports-grid" id="reportsGrid">
+                    <!-- 沃尔核材报告卡片 - 2025.12.12 -->
+                    <div class="report-card">
+                        <a href="Report/沃尔核材.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">沃尔核材：核电材料领域领先企业研究</h3>
+                                <p class="report-summary">分析沃尔核材在核电材料领域的技术实力、市场份额和未来发展前景，评估投资机会。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-12</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">核电行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="沃尔核材">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="沃尔核材" data-title="沃尔核材：核电材料领域领先企业研究">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- HAIC光合组织大会报告卡片 - 2025.12.10 -->
+                    <div class="report-card">
+                        <a href="Report/HAIC光合组织大会.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">HAIC光合组织大会：行业趋势分析</h3>
+                                <p class="report-summary">解析HAIC光合组织大会的核心议题、行业趋势和未来发展方向，为投资者提供决策参考。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-10</span>
+                                    <span class="report-tags">
+                                        <span class="tag">行业分析</span>
+                                        <span class="tag">会议报告</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="HAIC光合组织大会">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="HAIC光合组织大会" data-title="HAIC光合组织大会：行业趋势分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 环旭电子报告卡片 - 2025.12.09 -->
+                    <div class="report-card">
+                        <a href="Report/环旭电子.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">环旭电子：电子制造服务行业深度分析</h3>
+                                <p class="report-summary">深入研究环旭电子的业务模式、客户结构和技术优势，预测其未来成长潜力。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-09</span>
+                                    <span class="report-tags">
+                                        <span class="tag">行业分析</span>
+                                        <span class="tag">电子行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="环旭电子">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="环旭电子" data-title="环旭电子：电子制造服务行业深度分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 航天发展报告卡片 - 2025.12.05 -->
+                    <div class="report-card">
+                        <a href="Report/航天发展.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">航天发展：航天领域投资价值分析</h3>
+                                <p class="report-summary">分析航天发展的业务布局、技术实力和市场前景，评估其在航天领域的投资价值。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-05</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">航天行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="航天发展">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="航天发展" data-title="航天发展：航天领域投资价值分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 博纳影业报告卡片 - 2025.12.04 -->
+                    <div class="report-card">
+                        <a href="Report/博纳影业.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">博纳影业：影视行业投资价值分析</h3>
+                                <p class="report-summary">分析博纳影业的业务布局、财务状况和市场竞争力，评估其在影视行业的投资价值和发展前景。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-04</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">影视行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="博纳影业">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="博纳影业" data-title="博纳影业：影视行业投资价值分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 普路通报告卡片 - 2025.12.03 -->
+                    <div class="report-card">
+                        <a href="Report/普路通.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">普路通：供应链管理行业投资分析</h3>
+                                <p class="report-summary">研究普路通在供应链管理领域的业务模式、竞争优势和技术优势，为投资者提供参考。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-03</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">供应链</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="普路通">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="普路通" data-title="普路通：供应链管理行业投资分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 汇得科技报告卡片 - 2025.12.01 -->
+                    <div class="report-card">
+                        <a href="Report/汇得科技.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">汇得科技：化工行业新星分析</h3>
+                                <p class="report-summary">研究汇得科技在化工行业的市场地位、技术优势和发展战略，预测其未来增长空间。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-12-01</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">化工行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="汇得科技">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="汇得科技" data-title="汇得科技：化工行业新星分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 龙高股份报告卡片 - 2025.11.28 -->
+                    <div class="report-card">
+                        <a href="Report/龙高股份.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">龙高股份：矿业领域投资价值评估</h3>
+                                <p class="report-summary">分析龙高股份的资源储备、开采技术和市场竞争力，评估其投资价值和风险。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-11-28</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">矿业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="龙高股份">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="龙高股份" data-title="龙高股份：矿业领域投资价值评估">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 赛微电子报告卡片 - 2025.11.27 -->
+                    <div class="report-card">
+                        <a href="Report/赛微电子.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">赛微电子：半导体行业深度分析</h3>
+                                <p class="report-summary">深入分析赛微电子在半导体领域的技术优势、市场地位和未来发展前景，评估其投资价值。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2025-11-27</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">半导体行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="赛微电子">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="赛微电子" data-title="赛微电子：半导体行业深度分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 新亚电子报告卡片 - 未指定发布日期，使用上传日期 -->
+                    <div class="report-card">
+                        <a href="Report/新亚电子.html" class="report-link" target="_blank">
+                            <div class="report-thumbnail">
+                                <div class="thumbnail-placeholder">报告封面</div>
+                                <!-- 封面图片 -->
+                                <img class="report-cover" src="" alt="报告封面" style="display: none;">
+                            </div>
+                            <div class="report-info">
+                                <h3 class="report-title">新亚电子：2024年投资价值分析</h3>
+                                <p class="report-summary">深入分析新亚电子的业务结构、财务状况和市场竞争力，评估其投资价值和未来发展潜力。</p>
+                                <div class="report-meta">
+                                    <span class="report-date">2024-05-25</span>
+                                    <span class="report-tags">
+                                        <span class="tag">公司研究</span>
+                                        <span class="tag">电子行业</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="report-actions">
+                            <button class="action-btn like-btn" data-report="新亚电子">
+                                <span class="action-icon">❤️</span>
+                                <span class="action-count">0</span>
+                            </button>
+                            <button class="action-btn share-btn" data-report="新亚电子" data-title="新亚电子：2024年投资价值分析">
+                                <span class="action-icon">📤</span>
+                                <span>分享</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 标签栏 -->
+            <aside class="tags-sidebar">
+                <h3>报告标签</h3>
+                <div class="tags-list">
+                    <a href="#" class="tag-item">财报分析</a>
+                    <a href="#" class="tag-item">行业分析</a>
+                    <a href="#" class="tag-item">投资策略</a>
+                    <a href="#" class="tag-item">公司研究</a>
+                    <a href="#" class="tag-item">竞争分析</a>
+                    <a href="#" class="tag-item">科技行业</a>
+                    <a href="#" class="tag-item">金融行业</a>
+                    <a href="#" class="tag-item">医药行业</a>
+                    <a href="#" class="tag-item">电子行业</a>
+                    <a href="#" class="tag-item">化工行业</a>
+                    <a href="#" class="tag-item">核电行业</a>
+                    <a href="#" class="tag-item">矿业</a>
+                    <a href="#" class="tag-item">半导体行业</a>
+                    <a href="#" class="tag-item">影视行业</a>
+                </div>
+            </aside>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="author-info">
+                <h3>关于作者</h3>
+                <div class="social-links">
+                    <div class="social-item xiaohongshu">
+                        <a href="https://xhslink.com/m/1fckO5x1MTX" class="social-link" target="_blank">
+                            <span class="social-icon">📕</span>
+                            <span>小红书：EmptyVIP</span>
+                        </a>
+                        <div class="qrcode-container">
+                            <img src="小红书.jpg" alt="小红书二维码" class="qrcode">
+                            <p>扫码关注我的小红书</p>
+                        </div>
+                    </div>
+                    <div class="social-item">
+                        <div class="social-link">
+                            <span class="social-icon">📺</span>
+                            <span>B站</span>
+                        </div>
+                    </div>
+                    <div class="social-item wechat">
+                        <div class="social-link">
+                            <img src="公众号图标.png" alt="微信公众号" class="social-icon-image">
+                            <span>微信公众号：闲卧稻田中</span>
+                        </div>
+                        <div class="qrcode-container">
+                            <img src="微信公众号.jpg" alt="微信公众号二维码" class="qrcode">
+                            <p>扫码关注我的微信公众号</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

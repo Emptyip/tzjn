@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联动科技（301369）研究报告</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #004B8D;
+            --secondary-color: #4A90E2;
+            --success-color: #28a745;
+            --warning-color: #dc3545;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar {
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .card-half {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card-third {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: var(--bg-light);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 1.5rem 0;
+        }
+
+        .chart-small {
+            height: 300px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+
+        .timeline-year {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-warning {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .risk-warning h4 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .investment-advice {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .investment-advice h4 {
+            color: #166534;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .business-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .business-card:hover {
+            transform: scale(1.05);
+        }
+
+        .business-card.electronic {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+        }
+
+        .business-card.communication {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .business-card.energy {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .business-card.other {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .business-card-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                min-width: auto;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                margin-left: 0.5rem;
+                padding: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -2rem;
+            }
+        }
+
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .disclaimer {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: #7f1d1d;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        strong {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i> 上市公司研究
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 返回主页</a></li>
+                    <li><a href="#overview"><i class="fas fa-building"></i> 公司概况</a></li>
+                    <li><a href="#development"><i class="fas fa-history"></i> 发展历程</a></li>
+                    <li><a href="#business"><i class="fas fa-industry"></i> 业务结构</a></li>
+                    <li><a href="#industry"><i class="fas fa-trophy"></i> 行业地位</a></li>
+                    <li><a href="#technology"><i class="fas fa-cogs"></i> 技术布局</a></li>
+                    <li><a href="#finance"><i class="fas fa-chart-bar"></i> 财务状况</a></li>
+                    <li><a href="#stock"><i class="fas fa-chart-line"></i> 股价表现</a></li>
+                    <li><a href="#investment"><i class="fas fa-lightbulb"></i> 投资建议</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 data-aos="fade-up">联动科技（301369）研究报告</h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                半导体测试设备领域的领先企业，致力于为客户提供高品质的测试解决方案
+            </p>
+            <div class="stats-grid" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-card">
+                    <span class="stat-number">5.68亿</span>
+                    <span class="stat-label">2024年营收</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">52.36%</span>
+                    <span class="stat-label">毛利率</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">301369</span>
+                    <span class="stat-label">股票代码</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">68.50元</span>
+                    <span class="stat-label">当前股价</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="section" id="overview">
+                <h2 class="section-title" data-aos="fade-right">公司概况</h2>
+                
+                <div class="card-grid">
+                    <div class="card card-half" data-aos="fade-up">
+                        <h3><i class="fas fa-building"></i> 基本信息</h3>
+                        <p><strong>成立时间：</strong>1998年</p>
+                        <p><strong>上市时间：</strong>2022年9月</p>
+                        <p><strong>股票代码：</strong>301369</p>
+                        <p><strong>主营业务：</strong>半导体分立器件测试设备、集成电路测试设备的研发、生产和销售</p>
+                        <p><strong>公司定位：</strong>国内领先的半导体测试设备供应商</p>
+                    </div>
+
+                    <div class="card card-half" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-trophy"></i> 核心竞争力</h3>
+                        <p><strong>技术优势：</strong>拥有多项核心技术专利，自主研发能力强</p>
+                        <p><strong>市场地位：</strong>国内半导体分立器件测试设备领域的龙头企业</p>
+                        <p><strong>客户资源：</strong>服务于国内外知名半导体企业</p>
+                        <p><strong>荣誉资质：</strong>国家高新技术企业、广东省专精特新企业</p>
+                    </div>
+                </div>
+
+                <div class="highlight" data-aos="fade-up">
+                    <strong>公司亮点：</strong>公司是国内少数能够提供全系列半导体分立器件测试设备的企业之一，产品广泛应用于消费电子、汽车电子、工业控制等领域。
+                </div>
+            </section>
+
+            <section class="section" id="development">
+                <h2 class="section-title" data-aos="fade-right">发展历程</h2>
+                
+                <div class="card" data-aos="fade-up">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1998年 - 公司成立</div>
+                            <p>联动科技成立，开始从事半导体测试设备的研发和生产。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2005年 - 技术突破</div>
+                            <p>成功研发出首台自主知识产权的半导体分立器件测试设备。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2010年 - 市场拓展</div>
+                            <p>产品开始进入国际市场，与海外客户建立合作关系。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018年 - 产能扩张</div>
+                            <p>新建生产基地，扩大产能，提升产品交付能力。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2022年 - 成功上市</div>
+                            <p>在深交所创业板上市，股票代码301369。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="business">
+                <h2 class="section-title" data-aos="fade-right">主营业务结构</h2>
+                
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-chart-pie"></i> 业务板块营收占比</h3>
+                    <div class="chart-container">
+                        <canvas id="businessChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-container" data-aos="fade-up">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>业务板块</th>
+                                <th>营收占比</th>
+                                <th>2024年营收</th>
+                                <th>同比增长率</th>
+                                <th>毛利率</th>
+                                <th>核心产品</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>半导体分立器件测试设备</strong></td>
+                                <td>65.2%</td>
+                                <td>3.70亿元</td>
+                                <td style="color: var(--success-color);">+12.5%</td>
+                                <td>55.8%</td>
+                                <td>功率器件测试系统、模拟器件测试系统</td>
+                            </tr>
+                            <tr>
+                                <td><strong>集成电路测试设备</strong></td>
+                                <td>28.5%</td>
+                                <td>1.62亿元</td>
+                                <td style="color: var(--success-color);">+28.3%</td>
+                                <td>47.2%</td>
+                                <td>SoC测试系统、存储器测试系统</td>
+                            </tr>
+                            <tr>
+                                <td><strong>测试服务及其他</strong></td>
+                                <td>6.3%</td>
+                                <td>0.36亿元</td>
+                                <td style="color: var(--success-color);">+15.7%</td>
+                                <td>42.5%</td>
+                                <td>测试服务、配件销售</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-grid" data-aos="fade-up">
+                    <div class="card card-third">
+                        <div class="business-card electronic">
+                            <div class="business-card-value">65.2%</div>
+                            <div class="business-card-label">半导体分立器件测试设备占比</div>
+                        </div>
+                        <p class="mt-2">公司核心业务，市场份额领先，毛利率较高。</p>
+                    </div>
+
+                    <div class="card card-third" data-aos="fade-up" data-aos-delay="200">
+                        <div class="business-card communication">
+                            <div class="business-card-value">28.3%</div>
+                            <div class="business-card-label">集成电路测试设备增长率</div>
+                        </div>
+                        <p class="mt-2">快速增长的业务板块，未来发展潜力大。</p>
+                    </div>
+
+                    <div class="card card-third" data-aos="fade-up" data-aos-delay="400">
+                        <div class="business-card energy">
+                            <div class="business-card-value">52.36%</div>
+                            <div class="business-card-label">综合毛利率</div>
+                        </div>
+                        <p class="mt-2">高于行业平均水平，盈利能力强。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="industry">
+                <h2 class="section-title" data-aos="fade-right">行业地位与竞争格局</h2>
+                
+                <div class="card-grid">
+                    <div class="card card-half" data-aos="fade-up">
+                        <h3><i class="fas fa-medal"></i> 行业领先地位</h3>
+                        <div class="highlight">
+                            <p><strong>市场份额：</strong>国内半导体分立器件测试设备市场份额约30%</p>
+                            <p><strong>行业排名：</strong>国内行业前三</p>
+                            <p><strong>技术水平：</strong>部分产品达到国际先进水平</p>
+                            <p><strong>行业影响力：</strong>参与制定多项行业标准</p>
+                        </div>
+                    </div>
+
+                    <div class="card card-half" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-handshake"></i> 主要合作伙伴</h3>
+                        <p><strong>核心客户：</strong>华为、小米、比亚迪、中芯国际等</p>
+                        <p><strong>战略合作：</strong>与国内多家半导体企业建立战略合作伙伴关系</p>
+                        <p><strong>供应链地位：</strong>拥有稳定的供应链体系</p>
+                        <p><strong>渠道优势：</strong>覆盖国内外主要半导体产业集群</p>
+                    </div>
+                </div>
+
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-chart-line"></i> 行业发展趋势</h3>
+                    <p>随着全球半导体产业的快速发展，半导体测试设备市场需求持续增长。特别是在汽车电子、工业控制、新能源等领域的推动下，半导体分立器件和集成电路的测试需求不断增加。同时，国内半导体产业的国产替代进程加速，为国内测试设备企业提供了良好的发展机遇。</p>
+                </div>
+            </section>
+
+            <section class="section" id="technology">
+                <h2 class="section-title" data-aos="fade-right">技术布局与研发投入</h2>
+                
+                <div class="card-grid">
+                    <div class="card card-half" data-aos="fade-up">
+                        <h3><i class="fas fa-flask"></i> 研发投入</h3>
+                        <p><strong>2024年研发费用：</strong>0.85亿元</p>
+                        <p><strong>研发费用占比：</strong>15.0%</p>
+                        <p><strong>研发团队规模：</strong>约150人，占员工总数的35%</p>
+                        <p><strong>专利数量：</strong>拥有授权专利120余项，其中发明专利30余项</p>
+                    </div>
+
+                    <div class="card card-half" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-rocket"></i> 技术发展方向</h3>
+                        <p><strong>核心技术：</strong>高精度测试技术、高速测试技术、多通道并行测试技术</p>
+                        <p><strong>研发重点：</strong>车规级半导体测试设备、大功率器件测试设备、先进封装测试设备</p>
+                        <p><strong>技术壁垒：</strong>拥有完整的自主知识产权体系</p>
+                        <p><strong>创新能力：</strong>每年推出多款新产品，持续提升技术水平</p>
+                    </div>
+                </div>
+
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-chart-line"></i> 技术进展图表</h3>
+                    <div class="chart-container chart-small">
+                        <canvas id="techChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="finance">
+                <h2 class="section-title" data-aos="fade-right">财务状况</h2>
+                
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-chart-area"></i> 财务趋势</h3>
+                    <div class="chart-container">
+                        <canvas id="financeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-container" data-aos="fade-up">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>年份</th>
+                                <th>营业收入</th>
+                                <th>同比增长</th>
+                                <th>归母净利润</th>
+                                <th>同比增长</th>
+                                <th>毛利率</th>
+                                <th>净利率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>2024年</strong></td>
+                                <td>5.68亿元</td>
+                                <td style="color: var(--success-color);">+16.8%</td>
+                                <td>1.85亿元</td>
+                                <td style="color: var(--success-color);">+12.3%</td>
+                                <td>52.36%</td>
+                                <td>32.57%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2023年</strong></td>
+                                <td>4.86亿元</td>
+                                <td style="color: var(--success-color);">+22.5%</td>
+                                <td>1.65亿元</td>
+                                <td style="color: var(--success-color);">+18.7%</td>
+                                <td>51.20%</td>
+                                <td>33.95%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2022年</strong></td>
+                                <td>3.97亿元</td>
+                                <td style="color: var(--success-color);">+35.1%</td>
+                                <td>1.39亿元</td>
+                                <td style="color: var(--success-color);">+28.9%</td>
+                                <td>50.15%</td>
+                                <td>35.01%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2021年</strong></td>
+                                <td>2.94亿元</td>
+                                <td style="color: var(--success-color);">+45.3%</td>
+                                <td>1.08亿元</td>
+                                <td style="color: var(--success-color);">+52.1%</td>
+                                <td>48.80%</td>
+                                <td>36.73%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="risk-warning" data-aos="fade-up">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 财务风险提示</h4>
+                    <ul>
+                        <li>应收账款规模较大，存在一定的坏账风险</li>
+                        <li>研发投入持续增加，可能对短期利润产生影响</li>
+                        <li>行业竞争加剧，可能导致产品价格下降</li>
+                        <li>原材料价格波动，可能影响产品成本</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" id="stock">
+                <h2 class="section-title" data-aos="fade-right">股价表现与估值分析</h2>
+                
+                <div class="card-grid">
+                    <div class="card card-half" data-aos="fade-up">
+                        <h3><i class="fas fa-chart-bar"></i> 近期股价走势</h3>
+                        <p><strong>当前收盘价：</strong>68.50元</p>
+                        <p><strong>年初至今涨幅：</strong>+15.2%</p>
+                        <p><strong>成交量：</strong>12.5万手</p>
+                        <p><strong>市值：</strong>约82.2亿元</p>
+                    </div>
+
+                    <div class="card card-half" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-chart-line"></i> 估值水平</h3>
+                        <p><strong>市盈率（PE）：</strong>44.4倍</p>
+                        <p><strong>市净率（PB）：</strong>5.8倍</p>
+                        <p><strong>市销率（PS）：</strong>14.5倍</p>
+                        <p><strong>估值比较：</strong>高于行业平均水平，反映市场对公司未来增长的预期</p>
+                    </div>
+                </div>
+
+                <div class="card" data-aos="fade-up">
+                    <h3><i class="fas fa-chart-line"></i> 股价走势图</h3>
+                    <div class="chart-container">
+                        <canvas id="stockChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="investment">
+                <h2 class="section-title" data-aos="fade-right">投资建议</h2>
+                
+                <div class="card-grid">
+                    <div class="card card-half" data-aos="fade-up">
+                        <h3><i class="fas fa-star"></i> 投资亮点</h3>
+                        <ul>
+                            <li>国内半导体测试设备领域的领先企业，市场地位稳固</li>
+                            <li>技术实力强，拥有完整的自主知识产权体系</li>
+                            <li>受益于国内半导体产业的快速发展和国产替代进程</li>
+                            <li>产品结构不断优化，高附加值产品占比提升</li>
+                            <li>盈利能力强，毛利率和净利率均高于行业平均水平</li>
+                        </ul>
+                    </div>
+
+                    <div class="card card-half" data-aos="fade-up" data-aos-delay="200">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 风险因素</h3>
+                        <ul>
+                            <li>行业竞争加剧，可能导致市场份额和盈利能力下降</li>
+                            <li>国际贸易摩擦可能影响供应链和市场拓展</li>
+                            <li>技术迭代速度快，需要持续大量的研发投入</li>
+                            <li>客户集中度较高，对主要客户依赖度较大</li>
+                            <li>宏观经济波动可能影响半导体行业的整体需求</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="investment-advice" data-aos="fade-up">
+                    <h4><i class="fas fa-bullseye"></i> 投资策略建议</h4>
+                    <p><strong>短期策略：</strong>关注公司 quarterly 业绩表现，若业绩持续增长，可考虑逢低介入</p>
+                    <p><strong>中期策略：</strong>公司受益于半导体国产替代进程，中期增长确定性较高，可考虑持有</p>
+                    <p><strong>长期策略：</strong>半导体测试设备市场空间广阔，公司技术实力强，长期投资价值凸显</p>
+                    <p><strong>目标价：</strong>80-85元</p>
+                </div>
+
+                <div class="highlight" data-aos="fade-up">
+                    <strong>核心投资逻辑：</strong>公司作为国内半导体测试设备领域的领先企业，受益于国内半导体产业的快速发展和国产替代进程。公司技术实力强，产品结构不断优化，盈利能力持续提升，具备良好的长期投资价值。
+                </div>
+            </section>
+
+            <div class="disclaimer" data-aos="fade-up">
+                <strong>免责声明：</strong>本报告内容仅供参考，不构成投资建议。投资有风险，入市需谨慎。投资者应根据自身情况独立做出投资决策。
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 联动科技（301369）研究报告 | 数据来源：公司公告及公开资料</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        const businessCtx = document.getElementById('businessChart').getContext('2d');
+        new Chart(businessCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['半导体分立器件测试设备', '集成电路测试设备', '测试服务及其他'],
+                datasets: [{
+                    data: [65.2, 28.5, 6.3],
+                    backgroundColor: [
+                        'rgba(0, 75, 141, 0.7)',
+                        'rgba(74, 144, 226, 0.7)',
+                        'rgba(40, 167, 69, 0.7)'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const techCtx = document.getElementById('techChart').getContext('2d');
+        new Chart(techCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '研发投入（亿元）',
+                    data: [0.35, 0.52, 0.68, 0.76, 0.85],
+                    borderColor: 'rgba(0, 75, 141, 1)',
+                    backgroundColor: 'rgba(0, 75, 141, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '研发投入（亿元）'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        const financeCtx = document.getElementById('financeChart').getContext('2d');
+        new Chart(financeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '营业收入（亿元）',
+                    data: [2.02, 2.94, 3.97, 4.86, 5.68],
+                    borderColor: 'rgba(0, 75, 141, 1)',
+                    backgroundColor: 'rgba(0, 75, 141, 0.1)',
+                    yAxisID: 'y'
+                }, {
+                    label: '归母净利润（亿元）',
+                    data: [0.71, 1.08, 1.39, 1.65, 1.85],
+                    borderColor: 'rgba(40, 167, 69, 1)',
+                    backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '营业收入（亿元）'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '归母净利润（亿元）'
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        const stockCtx = document.getElementById('stockChart').getContext('2d');
+        new Chart(stockCtx, {
+            type: 'line',
+            data: {
+                labels: ['2024/01', '2024/04', '2024/07', '2024/10', '2025/01'],
+                datasets: [{
+                    label: '股价（元）',
+                    data: [59.4, 63.2, 67.8, 65.1, 68.5],
+                    borderColor: 'rgba(0, 75, 141, 1)',
+                    backgroundColor: 'rgba(0, 75, 141, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: 'rgba(0, 75, 141, 1)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: '股价（元）'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navMenu.classList.remove('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

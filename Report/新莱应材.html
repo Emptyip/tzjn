@@ -1,0 +1,622 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新莱应材研究报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .highlight-gradient-blue {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.05));
+        }
+        .highlight-gradient-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0), rgba(16, 185, 129, 0.05));
+        }
+        .highlight-gradient-purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0), rgba(139, 92, 246, 0.05));
+        }
+        .highlight-gradient-orange {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0), rgba(249, 115, 22, 0.05));
+        }
+        .highlight-gradient-red {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.05));
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div class="max-w-7xl mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- 标题卡片 -->
+            <div class="card md:col-span-4 p-8 flex flex-col justify-center">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                            <i class="fa-solid fa-microchip text-2xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">Research Report</div>
+                            <div class="text-3xl font-bold text-gray-800">新莱应材（300260）研究报告</div>
+                        </div>
+                    </div>
+                    <div class="text-xl font-semibold text-gray-700">半导体国产替代领军企业，液冷业务打开成长新空间</div>
+                </div>
+            </div>
+
+            <!-- 核心数据卡片 -->
+            <div class="card md:col-span-2 md:row-span-2 p-8 flex flex-col justify-center items-center text-center bg-gradient-to-br from-blue-50 to-blue-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-blue-600 font-semibold mb-2">半导体国产替代领军者</div>
+                    <div class="text-8xl font-bold text-blue-800 mb-4">18%</div>
+                    <div class="text-lg text-gray-600">国内高端半导体阀门市场份额</div>
+                    <div class="mt-6 border-t border-blue-200 pt-6">
+                        <div class="text-blue-600 font-semibold mb-2">液冷业务新增长极</div>
+                        <div class="text-6xl font-bold text-blue-800 mb-2">5亿+</div>
+                        <div class="text-lg text-gray-600">预计2026年液冷业务营收（元）</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 股票代码卡片 -->
+            <div class="card p-6 flex flex-col justify-center items-center bg-gradient-to-br from-green-50 to-green-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative text-center">
+                    <div class="text-green-600 font-semibold text-sm">股票代码</div>
+                    <div class="text-6xl font-bold text-green-800 my-2">300260</div>
+                    <div class="text-green-700 font-medium">创业板</div>
+                </div>
+            </div>
+
+            <!-- 市场地位卡片 -->
+            <div class="card p-6 flex flex-col justify-center bg-gradient-to-br from-purple-50 to-purple-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-purple-600 font-semibold mb-2">市场地位</div>
+                    <div class="text-2xl font-bold text-purple-800 mb-1">国内高纯洁净流体控制领域</div>
+                    <div class="text-4xl font-bold text-purple-700">绝对龙头</div>
+                </div>
+            </div>
+
+            <!-- 成立时间卡片 -->
+            <div class="card p-6 flex flex-col justify-center items-center bg-gradient-to-br from-orange-50 to-orange-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative text-center">
+                    <div class="text-orange-600 font-semibold text-sm">成立时间</div>
+                    <div class="text-6xl font-bold text-orange-800 my-2">1991</div>
+                    <div class="text-orange-700 font-medium">深耕行业30余年</div>
+                </div>
+            </div>
+
+            <!-- 技术突破卡片 -->
+            <div class="card p-6 flex flex-col justify-center bg-gradient-to-br from-red-50 to-red-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <div class="text-red-600 font-semibold mb-2">技术突破</div>
+                    <div class="text-2xl font-bold text-red-800 mb-1">14nm以下超高纯气体管路系统</div>
+                    <div class="text-lg font-medium text-red-700">打破美日30年垄断</div>
+                </div>
+            </div>
+
+            <!-- 公司发展历程卡片 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">公司发展历程</div>
+                    <div class="flex flex-col space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0 mt-1">1</div>
+                            <div>
+                                <div class="font-bold text-lg text-gray-800">创业起步阶段 (1991-2006)</div>
+                                <div class="text-gray-600 mt-1">专注食品饮料行业高洁净管路系统，逐步拓展至生物医药和电子洁净产业。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0 mt-1">2</div>
+                            <div>
+                                <div class="font-bold text-lg text-gray-800">上市与国际化扩张 (2007-2016)</div>
+                                <div class="text-gray-600 mt-1">2011年创业板上市，2012年获AMAT认证，2016年收购美国GNB进入高端真空半导体市场。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0 mt-1">3</div>
+                            <div>
+                                <div class="font-bold text-lg text-gray-800">产业链整合与多元化发展 (2017-2022)</div>
+                                <div class="text-gray-600 mt-1">收购山东碧海切入食品包装领域，加大半导体相关产品研发投入，成为国内唯一覆盖三大领域的高洁净应用材料制造商。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 text-blue-800 rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0 mt-1">4</div>
+                            <div>
+                                <div class="font-bold text-lg text-gray-800">技术突破与战略转型 (2023至今)</div>
+                                <div class="text-gray-600 mt-1">14nm以下超高纯气体管路系统通过验证，启动大规模扩产计划，布局AI液冷新业务。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主营业务产品结构卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">主营业务产品结构</div>
+                    <div class="h-80">
+                        <canvas id="productStructureChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 应用领域卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">应用领域</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-utensils text-3xl text-purple-600 mb-2"></i>
+                            <div class="font-semibold text-purple-800">食品安全</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-pills text-3xl text-purple-600 mb-2"></i>
+                            <div class="font-semibold text-purple-800">生物医药</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg text-center">
+                            <i class="fa-solid fa-microchip text-3xl text-purple-600 mb-2"></i>
+                            <div class="font-semibold text-purple-800">泛半导体</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-gray-600">
+                        公司是国内唯一覆盖食品安全、生物医药和泛半导体三大领域的高洁净应用材料制造商，构建了"材料-设备-工艺"垂直整合能力。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 子公司业务布局卡片 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">子公司业务布局</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-orange-50 p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-boxes-stacked text-2xl text-orange-600"></i>
+                                <div class="text-xl font-bold text-orange-800">山东碧海包装材料有限公司</div>
+                            </div>
+                            <div class="text-gray-700 mb-3">
+                                食品业务核心载体，提供纸铝塑复合液态食品无菌包装纸和无菌纸盒灌装机的"设备+包材"一站式服务。
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                主要客户：伊利、蒙牛、雀巢、可口可乐等头部企业
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-globe text-2xl text-orange-600"></i>
+                                <div class="text-xl font-bold text-orange-800">美国GNB Corporation</div>
+                            </div>
+                            <div class="text-gray-700 mb-3">
+                                成立于1968年，拥有世界一流的超大尺寸真空阀门客制化设计能力和制造工艺，产品主要用于航空航天、大型基础建设及电子洁净行业。
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                2016年被收购，交易作价390万美元
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行业地位与竞争格局卡片 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">行业地位与竞争格局</div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-cogs text-2xl text-blue-600"></i>
+                                <div class="text-lg font-bold text-blue-800">技术壁垒深厚</div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>掌握14项核心工艺，产品纯度达5N级（99.999%）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>国内唯一通过AMAT和泛林半导体双认证的高纯材料供应商</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>14nm以下超高纯气体管路系统通过长江存储验证</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-handshake text-2xl text-blue-600"></i>
+                                <div class="text-lg font-bold text-blue-800">客户资源优质</div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>半导体：AMAT、LAM、ASML、英特尔、三星等</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>食品：伊利、蒙牛、三元乳业、康师傅等</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>医药：罗氏、默克、GSK、辉瑞等</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-chart-pie text-2xl text-blue-600"></i>
+                                <div class="text-lg font-bold text-blue-800">市场份额领先</div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>半导体阀门：国内高端市场份额18%（2024年）</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>真空阀门：市占率超过30%</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>食品包装：国内市场份额32%，稳居第二</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 业绩表现卡片 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">业绩表现 (2023-2025)</div>
+                    <div class="h-80">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 技术发展规划卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-purple"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">技术发展规划</div>
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-2">研发投入持续增长</div>
+                            <div class="text-gray-700">2024年研发费用达1.92亿元，占营收比例6.8%，研发费用率连续三年提升。</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-2">半导体领域技术突破</div>
+                            <div class="text-gray-700">14nm以下超高纯气体管路系统打破美日垄断，开发控压蝶阀、ALD阀等新产品。</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="font-semibold text-purple-800 mb-2">产业链垂直整合</div>
+                            <div class="text-gray-700">自建高纯不锈钢材料生产线，原材料自给率从2022年的30%提升至2024年的65%。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产能扩张计划卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-orange"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">产能扩张计划</div>
+                    <div class="space-y-4">
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <div class="font-semibold text-orange-800 mb-2">山东基地扩产</div>
+                            <div class="text-gray-700">二期项目2025年第三季度投产，半导体阀门产能提升至月产2万套，较2024年翻倍。</div>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <div class="font-semibold text-orange-800 mb-2">昆山基地建设</div>
+                            <div class="text-gray-700">总投资10亿元，新建2.3万平方米厂房，预计2024年底投产。</div>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <div class="font-semibold text-orange-800 mb-2">重大投资项目</div>
+                            <div class="text-gray-700">2025年10月投资20亿元建设半导体核心零部件项目，达产后预计年产值超15亿元。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新业务布局卡片 -->
+            <div class="card md:col-span-4 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">新业务布局</div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-red-50 p-6 rounded-xl flex flex-col items-center text-center">
+                            <i class="fa-solid fa-snowflake text-5xl text-red-600 mb-4"></i>
+                            <div class="text-xl font-bold text-red-800 mb-3">AI液冷业务</div>
+                            <div class="text-gray-700 mb-4">
+                                布局液冷CDU、管件及Manifold等产品，CDU已进入英伟达GB200供应链验证。
+                            </div>
+                            <div class="text-sm text-red-600 font-semibold">
+                                2024年订单8000万元<br>
+                                2025年已锁定3.2亿元订单
+                            </div>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-xl flex flex-col items-center text-center">
+                            <i class="fa-solid fa-gas-pump text-5xl text-red-600 mb-4"></i>
+                            <div class="text-xl font-bold text-red-800 mb-3">氢能装备业务</div>
+                            <div class="text-gray-700 mb-4">
+                                2020-2024年，公司在氢能装备领域实现从0到1.2亿元的突破。
+                            </div>
+                            <div class="text-sm text-red-600 font-semibold">
+                                持续增长中
+                            </div>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-xl flex flex-col items-center text-center">
+                            <i class="fa-solid fa-globe-americas text-5xl text-red-600 mb-4"></i>
+                            <div class="text-xl font-bold text-red-800 mb-3">国际化布局</div>
+                            <div class="text-gray-700 mb-4">
+                                通过泰国基地供应东南亚市场，提升海外市场份额。
+                            </div>
+                            <div class="text-sm text-red-600 font-semibold">
+                                2025年海外订单占比目标<br>
+                                突破20%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投资风险因素卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-red"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">投资风险因素</div>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">行业周期性风险</div>
+                                <div class="text-sm text-gray-600">半导体行业具有明显的周期性特征，若下游资本开支减缓，公司将面临市场需求下降的风险。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">国际贸易风险</div>
+                                <div class="text-sm text-gray-600">中美贸易摩擦可能导致半导体订单延后和减少，影响公司的海外业务拓展。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">技术竞争风险</div>
+                                <div class="text-sm text-gray-600">若海外厂商推出更高性能的产品，可能挤压公司的市场份额。</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-triangle-exclamation text-red-500 mt-1"></i>
+                            <div>
+                                <div class="font-semibold text-gray-800">财务风险</div>
+                                <div class="text-sm text-gray-600">资产负债率连续三年上升，2025年上半年突破60%，短期偿债能力偏弱。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 未来投资预期卡片 -->
+            <div class="card md:col-span-2 p-8">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-green"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">未来投资预期</div>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="font-semibold text-green-800 mb-2">短期预期 (未来6个月)</div>
+                            <div class="text-sm text-gray-700">股价可能在32-50元区间震荡，若2025年第四季度英伟达GB200供应链认证通过，可能带来股价催化剂。</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="font-semibold text-green-800 mb-2">中期预期 (未来1-2年)</div>
+                            <div class="text-sm text-gray-700">半导体业务有望受益于国产替代加速，液冷业务若能顺利放量，预计2026年公司业绩将迎来拐点，归母净利润有望恢复至3-4亿元水平。</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="font-semibold text-green-800 mb-2">长期预期 (未来3-5年)</div>
+                            <div class="text-sm text-gray-700">公司作为国内高纯洁净流体控制领域的绝对龙头，将充分受益于半导体国产化大趋势，预计2027年归母净利润有望达到5-7亿元水平。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 投资建议卡片 -->
+            <div class="card md:col-span-4 p-8 bg-gradient-to-br from-blue-50 to-blue-100">
+                <div class="absolute top-0 left-0 w-full h-full highlight-gradient-blue"></div>
+                <div class="relative">
+                    <div class="text-2xl font-bold text-gray-800 mb-6">投资建议</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-thumbs-up text-2xl text-blue-600"></i>
+                                <div class="text-xl font-bold text-blue-800">核心投资逻辑</div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>半导体国产替代领军企业，技术壁垒深厚</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>AI液冷业务打开新增长空间，有望成为新的业绩引擎</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>产能扩张持续推进，为未来增长奠定基础</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-check-circle text-blue-500 mt-1"></i>
+                                    <span>估值相对合理，低于海外同行及国内半导体设备公司平均水平</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-lightbulb text-2xl text-blue-600"></i>
+                                <div class="text-xl font-bold text-blue-800">具体操作建议</div>
+                            </div>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-arrow-right text-blue-500 mt-1"></i>
+                                    <span>风险承受能力较强的投资者可在股价回调至32-35元区间分批布局</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-arrow-right text-blue-500 mt-1"></i>
+                                    <span>若2025年第四季度毛利率回升至25%以上，可考虑加仓</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-arrow-right text-blue-500 mt-1"></i>
+                                    <span>长期投资者可忽略短期波动，聚焦公司在半导体国产替代和AI液冷领域的成长潜力</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-arrow-right text-blue-500 mt-1"></i>
+                                    <span>建议作为"国产替代+算力革命"交叉主题的战略性布局标的</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 主营业务产品结构图表
+    const productCtx = document.getElementById('productStructureChart').getContext('2d');
+    new Chart(productCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['无菌包材', '高纯及超高纯应用材料', '洁净应用材料', '食品设备'],
+            datasets: [{
+                label: '收入占比',
+                data: [48.71, 30.21, 14.87, 6.22],
+                backgroundColor: [
+                    'rgba(59, 130, 246, 0.7)',
+                    'rgba(16, 185, 129, 0.7)',
+                    'rgba(139, 92, 246, 0.7)',
+                    'rgba(249, 115, 22, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(59, 130, 246, 1)',
+                    'rgba(16, 185, 129, 1)',
+                    'rgba(139, 92, 246, 1)',
+                    'rgba(249, 115, 22, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 20,
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // 业绩表现图表
+    const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+    new Chart(performanceCtx, {
+        type: 'line',
+        data: {
+            labels: ['2023年', '2024年', '2025年前三季度'],
+            datasets: [
+                {
+                    label: '营业收入 (亿元)',
+                    data: [27.11, 28.49, 22.55],
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: '归母净利润 (亿元)',
+                    data: [2.36, 2.26, 1.45],
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + ' 亿元';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' 亿元';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</html>
